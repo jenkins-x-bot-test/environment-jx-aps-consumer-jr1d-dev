@@ -1,24 +1,66 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  project: ""
+  clusterName: jx-aps-consumer-jr1d
+  environmentGitOwner: jenkins-x-bot-test
+  environmentGitPublic: true
+  externalDNSSAName: jx-aps-consumer-jr1d-dn
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  kanikoSAName: jx-aps-consumer-jr1d-ko
+  namespace: jx
+  project: cb-aps-poc-consumer-jr1d
   provider: gke
-  zone: ""
-gitops: true
+  vaultName: jx-aps-consumer-jr1d
+  vaultSAName: jx-aps-consumer-jr1d-vt
+  zone: us-east1-c
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+gitops: true
 ingress:
-  domain: ""
-  externalDNS: false
+  cloud_dns_secret_name: external-dns-gcp-sa
+  domain: cb-aps-poc-consumer-jr1d.jxaas.io
+  domainIssuerURL: https://jx-tenant-service-jx-staging.jenkins-x.live
+  externalDNS: true
+  namespaceSubDomain: -jx.
   tls:
     email: jenkins-x@cloudbees.com
     enabled: true
-    production: false
+    production: true
 kaniko: true
 secretStorage: vault
 storage:
+  backup:
+    enabled: false
+    url: ""
   logs:
     enabled: false
     url: ""
@@ -28,4 +70,14 @@ storage:
   repository:
     enabled: false
     url: ""
+vault:
+  bucket: cb-aps-poc-consumer-jr1d-vault
+  key: jx-aps-consumer-jr1d-crypto-key
+  keyring: jx-aps-consumer-jr1d-keyring
+  name: jx-aps-consumer-jr1d
+  serviceAccount: jx-aps-consumer-jr1d-vt
+velero: {}
+versionStream:
+  ref: ""
+  url: ""
 webhook: prow
